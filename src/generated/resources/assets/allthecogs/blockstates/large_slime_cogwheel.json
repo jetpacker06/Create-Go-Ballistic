@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "allthecogs:block/large_slime_cogwheel",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "allthecogs:block/large_slime_cogwheel"
+    },
+    "axis=z": {
+      "model": "allthecogs:block/large_slime_cogwheel",
+      "x": 90,
+      "y": 180
+    }
+  }
+}

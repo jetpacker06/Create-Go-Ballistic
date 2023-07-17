@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "allthecogs:block/hay_cogwheel",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "allthecogs:block/hay_cogwheel"
+    },
+    "axis=z": {
+      "model": "allthecogs:block/hay_cogwheel",
+      "x": 90,
+      "y": 180
+    }
+  }
+}
