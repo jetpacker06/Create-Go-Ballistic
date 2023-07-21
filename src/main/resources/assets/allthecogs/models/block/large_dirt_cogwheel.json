@@ -1,9 +1,0 @@
-{
-	"parent": "allthecogs:block/custom_large_cogwheel",
-	"textures": {
-		"0": "create:block/cogwheel_axis",
-		"3": "create:block/axis_top",
-		"4": "allthecogs:block/large_dirt_cogwheel",
-		"particle": "block/dirt"
-	}
-}

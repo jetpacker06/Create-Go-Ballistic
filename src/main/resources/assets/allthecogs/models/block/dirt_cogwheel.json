@@ -1,7 +1,0 @@
-{
-	"parent": "allthecogs:block/custom_cogwheel",
-	"textures": {
-		"1_2": "allthecogs:block/dirt_cogwheel",
-		"particle": "block/dirt"
-	}
-}

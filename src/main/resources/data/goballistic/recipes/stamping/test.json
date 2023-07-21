@@ -1,0 +1,16 @@
+{
+  "type": "goballistic:stamping",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:brass_sheet"
+    }
+  ]
+}
