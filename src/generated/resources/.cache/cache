@@ -1,0 +1,7 @@
+fdd799283ee3a4aabed08949017bec9a4066fd8e assets/goballistic/blockstates/mechanical_stamp.json
+0c250f2f114db65d23bdbb8f9460d844ffc810e3 assets/goballistic/lang/en_ud.json
+1b5b64da0f851209062983bd35917d1ce1ba042d assets/goballistic/lang/en_us.json
+0491a7c979f1e41f0e903a9756c346847ef54681 assets/goballistic/models/item/mechanical_stamp.json
+529c757dd2d30c82636c9b8959bb112400cd9406 data/goballistic/loot_tables/blocks/mechanical_stamp.json
+4acc504526a02ac631d934f3490debb34cc2c4b2 data/minecraft/tags/blocks/mineable/axe.json
+4acc504526a02ac631d934f3490debb34cc2c4b2 data/minecraft/tags/blocks/mineable/pickaxe.json

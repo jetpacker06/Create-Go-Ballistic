@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "goballistic:block/mechanical_stamp/block"
+    },
+    "facing=south": {
+      "model": "goballistic:block/mechanical_stamp/block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "goballistic:block/mechanical_stamp/block",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "goballistic:block/mechanical_stamp/block",
+      "y": 90
+    }
+  }
+}
