@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "goballistic:casing_44"
+    },
+    {
+      "fluid": "goballistic:gunpowder",
+      "nbt": {},
+      "amount": 350
+    }
+  ],
+  "results": [
+    {
+      "item": "goballistic:filled_casing_44"
+    }
+  ]
+}

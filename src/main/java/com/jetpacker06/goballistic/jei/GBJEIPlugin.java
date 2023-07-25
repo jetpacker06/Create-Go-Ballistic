@@ -2,6 +2,7 @@ package com.jetpacker06.goballistic.jei;
 
 import com.jetpacker06.goballistic.GoBallistic;
 import com.jetpacker06.goballistic.content.kinetics.stamp.StampingRecipe;
+import com.jetpacker06.goballistic.register.GBBlocks;
 import com.jetpacker06.goballistic.register.GBRecipeTypes;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
@@ -14,7 +15,9 @@ import com.simibubi.create.infrastructure.config.CRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -35,6 +38,7 @@ import java.util.function.Supplier;
 public class GBJEIPlugin implements IModPlugin {
 
     public static ResourceLocation UID = new ResourceLocation(GoBallistic.MOD_ID, "jei_plugin");
+    private final ArrayList<CreateRecipeCategory<?>> categories = new ArrayList<>();
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
@@ -43,21 +47,35 @@ public class GBJEIPlugin implements IModPlugin {
 
     @Override
     public void registerCategories(@NotNull IRecipeCategoryRegistration registration) {
+        System.out.println("hhhh");
         var deploying = builder(StampingRecipe.class)
                 .addTypedRecipes(GBRecipeTypes.STAMPING::getType)
-                .catalyst(AllBlocks.DEPLOYER::get)
+                .catalyst(GBBlocks.MECHANICAL_STAMP::get)
                 .catalyst(AllBlocks.DEPOT::get)
                 .catalyst(AllItems.BELT_CONNECTOR::get)
-                .itemIcon(AllBlocks.DEPLOYER.get())
+                .itemIcon(GBBlocks.MECHANICAL_STAMP.get())
                 .emptyBackground(177, 70)
                 .build("stamping", StampingCategory::new);
+
+        categories.forEach(registration::addRecipeCategories);
     }
 
+    @Override
+    public void registerRecipes(@NotNull IRecipeRegistration registration) {
+        categories.forEach(c -> c.registerRecipes(registration));
+    }
+
+    @Override
+    public void registerRecipeCatalysts(@NotNull IRecipeCatalystRegistration registration) {
+        categories.forEach(c -> c.registerCatalysts(registration));
+    }
+
+    @SuppressWarnings("SameParameterValue")
     private <T extends Recipe<?>> CategoryBuilder<T> builder(Class<? extends T> recipeClass) {
         return new CategoryBuilder<>(recipeClass);
     }
 
-    private static class CategoryBuilder<T extends Recipe<?>> {
+    private class CategoryBuilder<T extends Recipe<?>> {
         private final Class<? extends T> recipeClass;
         private final Predicate<CRecipes> predicate = cRecipes -> true;
 
@@ -90,6 +108,7 @@ public class GBJEIPlugin implements IModPlugin {
                     .asItem()));
         }
 
+        @SuppressWarnings("UnusedReturnValue")
         public CategoryBuilder<T> icon(IDrawable icon) {
             this.icon = icon;
             return this;
@@ -100,6 +119,7 @@ public class GBJEIPlugin implements IModPlugin {
             return this;
         }
 
+        @SuppressWarnings("UnusedReturnValue")
         public CategoryBuilder<T> background(IDrawable background) {
             this.background = background;
             return this;
@@ -126,7 +146,9 @@ public class GBJEIPlugin implements IModPlugin {
             CreateRecipeCategory.Info<T> info = new CreateRecipeCategory.Info<>(
                     new mezz.jei.api.recipe.RecipeType<>(new ResourceLocation(GoBallistic.MOD_ID, name), recipeClass),
                     new TranslatableComponent(GoBallistic.MOD_ID + ".recipe." + name), background, icon, recipesSupplier, catalysts);
-            return factory.create(info);
+            var cat = factory.create(info);
+            categories.add(cat);
+            return cat;
         }
     }
 }

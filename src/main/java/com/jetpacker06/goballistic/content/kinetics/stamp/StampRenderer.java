@@ -52,24 +52,26 @@ public class StampRenderer extends KineticBlockEntityRenderer<MechanicalStampBlo
                 .light(light)
                 .renderInto(ms, buffer.getBuffer(RenderType.solid()));
     }
+
     protected void renderItem(MechanicalStampBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
                               int light, int overlay) {
         if (be.heldItem.isEmpty()) return;
 
-        BlockState deployerState = be.getBlockState();
-      //  Vec3 offset = getHandOffset(be, partialTicks, deployerState).add(VecHelper.getCenterOf(BlockPos.ZERO));
-        ms.pushPose();
-      //  ms.translate(offset.x, offset.y, offset.z);
+        BlockState state = be.getBlockState();
+        Direction facing = state.getValue(HORIZONTAL_FACING);
 
-        Direction facing = deployerState.getValue(HORIZONTAL_FACING);
+        float yOffset = -be.stampingBehavior.getRenderedHeadOffset(partialTicks);
+        ms.pushPose();
+        ms.translate(0, yOffset, 0);
 
         float yRot = AngleHelper.horizontalAngle(facing) + 180;
+        float xRot = 90;
 
         ms.mulPose(Vector3f.YP.rotationDegrees(yRot));
+        ms.mulPose(Vector3f.XP.rotationDegrees(xRot));
 
         ItemRenderer itemRenderer = Minecraft.getInstance()
                 .getItemRenderer();
-
         ItemTransforms.TransformType transform = ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND;
 
         itemRenderer.renderStatic(be.heldItem, transform, light, overlay, ms, buffer, 0);

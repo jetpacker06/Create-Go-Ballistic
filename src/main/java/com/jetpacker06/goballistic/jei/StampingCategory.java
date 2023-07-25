@@ -24,13 +24,13 @@ public class StampingCategory extends CreateRecipeCategory<StampingRecipe> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, StampingRecipe recipe, @NotNull IFocusGroup focuses) {
         builder
-                .addSlot(RecipeIngredientRole.INPUT, 15, 9)
+                .addSlot(RecipeIngredientRole.INPUT, 27, 51)
                 .setBackground(getRenderedSlot(), -1, -1)
-                .addIngredients(recipe.getIngredients().get(0));
+                .addIngredients(recipe.getProcessedItem());
         builder
-                .addSlot(RecipeIngredientRole.INPUT, 15, 33)
+                .addSlot(RecipeIngredientRole.INPUT, 51, 5)
                 .setBackground(getRenderedSlot(), -1, -1)
-                .addIngredients(recipe.getIngredients().get(1));
+                .addIngredients(recipe.getRequiredHeldItem());
 
         List<ProcessingOutput> results = recipe.getRollableResults();
         boolean single = results.size() == 1;
@@ -47,8 +47,8 @@ public class StampingCategory extends CreateRecipeCategory<StampingRecipe> {
 
     @Override
     public void draw(@NotNull StampingRecipe recipe, @NotNull IRecipeSlotsView iRecipeSlotsView, @NotNull PoseStack matrixStack, double mouseX, double mouseY) {
-        AllGuiTextures.JEI_ARROW.render(matrixStack, 85, 32);
-        AllGuiTextures.JEI_DOWN_ARROW.render(matrixStack, 43, 4);
-        stamp.draw(matrixStack, 48, 27);
+        AllGuiTextures.JEI_SHADOW.render(matrixStack, 62, 57);
+        AllGuiTextures.JEI_DOWN_ARROW.render(matrixStack, 126, 29 + (recipe.getRollableResults().size() > 2 ? -19 : 0));
+        stamp.draw(matrixStack, getBackground().getWidth() / 2 - 13, 22);
     }
 }

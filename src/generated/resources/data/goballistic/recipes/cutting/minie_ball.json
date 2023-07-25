@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "goballistic:lead_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "goballistic:minie_ball",
+      "count": 2
+    }
+  ]
+}

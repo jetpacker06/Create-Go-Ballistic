@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "goballistic:filled_casing_22"
+    }
+  ],
+  "results": [
+    {
+      "item": "goballistic:blank_22"
+    }
+  ]
+}

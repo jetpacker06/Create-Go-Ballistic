@@ -1,6 +1,7 @@
 package com.jetpacker06.goballistic.content.kinetics.stamp;
 
 import com.google.gson.JsonObject;
+import com.jetpacker06.goballistic.GoBallistic;
 import com.jetpacker06.goballistic.jei.GBSequencedAssemblySubCategories;
 import com.jetpacker06.goballistic.register.GBBlocks;
 import com.jetpacker06.goballistic.register.GBRecipeTypes;
@@ -8,10 +9,12 @@ import com.simibubi.create.compat.jei.category.sequencedAssembly.SequencedAssemb
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.sequenced.IAssemblyRecipe;
+import com.simibubi.create.foundation.utility.Components;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -27,7 +30,9 @@ import java.util.function.Supplier;
 
 public class StampingRecipe extends ProcessingRecipe<RecipeWrapper> implements IAssemblyRecipe {
 
+    // keepHeldItem not functional yet
     private boolean keepHeldItem;
+
     public StampingRecipe(ProcessingRecipeBuilder.ProcessingRecipeParams params) {
         super(GBRecipeTypes.STAMPING, params);
         keepHeldItem = params.keepHeldItem;
@@ -36,9 +41,9 @@ public class StampingRecipe extends ProcessingRecipe<RecipeWrapper> implements I
     @Override
     @ParametersAreNonnullByDefault
     public boolean matches(RecipeWrapper inv, Level worldIn) {
-        return ingredients.get(0)
+        return getProcessedItem()
                 .test(inv.getItem(0))
-                && ingredients.get(1)
+                && getRequiredHeldItem()
                 .test(inv.getItem(1));
     }
 
@@ -54,20 +59,24 @@ public class StampingRecipe extends ProcessingRecipe<RecipeWrapper> implements I
 
     public Ingredient getRequiredHeldItem() {
         if (ingredients.isEmpty())
-            throw new IllegalStateException("Item Application Recipe: " + id.toString() + " has no tool!");
+            throw new IllegalStateException("Stamping Recipe: " + id.toString() + " has no tool!");
         return ingredients.get(1);
     }
 
     public Ingredient getProcessedItem() {
         if (ingredients.size() < 2)
-            throw new IllegalStateException("Item Application Recipe: " + id.toString() + " has no ingredient!");
+            throw new IllegalStateException("Stamping Recipe: " + id.toString() + " has no ingredient!");
         return ingredients.get(0);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public Component getDescriptionForAssembly() {
-        return new TranslatableComponent("testentry");
+        ItemStack[] matchingStacks = ingredients.get(1)
+                .getItems();
+        if (matchingStacks.length == 0)
+            return Components.literal("Invalid");
+        return new TranslatableComponent(GoBallistic.MOD_ID + ".recipe.assembling.stamping_item");
     }
 
     @Override
@@ -77,7 +86,6 @@ public class StampingRecipe extends ProcessingRecipe<RecipeWrapper> implements I
 
     @Override
     public void addAssemblyIngredients(List<Ingredient> list) {
-        list.add(ingredients.get(0));
         list.add(ingredients.get(1));
     }
 

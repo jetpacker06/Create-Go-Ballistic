@@ -1,0 +1,17 @@
+{
+  "type": "goballistic:stamping",
+  "ingredients": [
+    {
+      "item": "create:brass_sheet"
+    },
+    {
+      "item": "goballistic:stamp_bullet_44"
+    }
+  ],
+  "results": [
+    {
+      "item": "goballistic:casing_44",
+      "count": 2
+    }
+  ]
+}

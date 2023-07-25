@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "goballistic:limestone_chunks"
+    }
+  ],
+  "results": [
+    {
+      "item": "goballistic:saltpeter"
+    }
+  ]
+}

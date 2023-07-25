@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "goballistic:filled_casing_44"
+    },
+    {
+      "item": "goballistic:bullet_44"
+    }
+  ],
+  "results": [
+    {
+      "item": "goballistic:cartridge_44"
+    }
+  ]
+}

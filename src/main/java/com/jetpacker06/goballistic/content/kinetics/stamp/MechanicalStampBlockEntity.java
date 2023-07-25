@@ -1,7 +1,6 @@
 package com.jetpacker06.goballistic.content.kinetics.stamp;
 
 import com.jetpacker06.goballistic.register.GBRecipeTypes;
-import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack;
@@ -152,18 +151,16 @@ public class MechanicalStampBlockEntity extends KineticBlockEntity implements St
     public Optional<StampingRecipe> getRecipe(ItemStack item) {
         assert level != null;
         Optional<StampingRecipe> assemblyRecipe =
-                SequencedAssemblyRecipe.getRecipe(level, item, AllRecipeTypes.PRESSING.getType(), StampingRecipe.class);
+                SequencedAssemblyRecipe.getRecipe(level, item, GBRecipeTypes.STAMPING.getType(), StampingRecipe.class);
         if (assemblyRecipe.isPresent())
             return assemblyRecipe;
-        pressingInv.setItem(0, heldItem);
-        pressingInv.setItem(1, item);
+        RecipeWrapper pressingInv = new RecipeWrapper(new ItemStackHandler(2));
+        pressingInv.setItem(0, item);
+        pressingInv.setItem(1, heldItem);
         return GBRecipeTypes.STAMPING.find(pressingInv, level);
     }
 
     public StampingBehavior getStampingBehavior() {
         return stampingBehavior;
     }
-
-
-    private static final RecipeWrapper pressingInv = new RecipeWrapper(new ItemStackHandler(2));
 }

@@ -1,0 +1,17 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "tag": "forge:basalt"
+    }
+  ],
+  "results": [
+    {
+      "item": "goballistic:sulfur"
+    },
+    {
+      "item": "goballistic:sulfur",
+      "chance": 0.5
+    }
+  ]
+}

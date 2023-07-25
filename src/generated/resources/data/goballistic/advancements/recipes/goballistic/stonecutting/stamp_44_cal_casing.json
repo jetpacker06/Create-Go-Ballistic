@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "goballistic:stonecutting/stamp_44_cal_casing"
+    ]
+  },
+  "criteria": {
+    "has_heavy_weighted_pressure_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goballistic:stamp_casing_44"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "goballistic:stonecutting/stamp_44_cal_casing"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_heavy_weighted_pressure_plate",
+      "has_the_recipe"
+    ]
+  ]
+}

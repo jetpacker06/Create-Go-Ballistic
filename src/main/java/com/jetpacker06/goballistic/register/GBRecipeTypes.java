@@ -37,13 +37,10 @@ public enum GBRecipeTypes implements IRecipeTypeInfo {
 
     GBRecipeTypes(ProcessingRecipeBuilder.ProcessingRecipeFactory<?> processingFactory) {
         this(() -> new ProcessingRecipeSerializer<>(processingFactory));
-        System.out.println("jjjj");
     }
     GBRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
         String name = Lang.asId(this.name());
-        System.out.println("hhhh " + name);
         id = new ResourceLocation(GoBallistic.MOD_ID, name);
-        System.out.println(id);
         serializerObject = Registers.SERIALIZER_REGISTER.register(name, serializerSupplier);
         typeObject = Registers.TYPE_REGISTER.register(name, () -> AllRecipeTypes.simpleType(id));
         type = typeObject;
@@ -71,11 +68,12 @@ public enum GBRecipeTypes implements IRecipeTypeInfo {
         private static final DeferredRegister<RecipeType<?>> TYPE_REGISTER = DeferredRegister.create(Registry.RECIPE_TYPE_REGISTRY, GoBallistic.MOD_ID);
 
         public static void register(IEventBus eventBus) {
+            SERIALIZER_REGISTER.register(eventBus);
+            TYPE_REGISTER.register(eventBus);
+
             // Necessary to ensure it loads
             @SuppressWarnings("unused")
             GBRecipeTypes r = GBRecipeTypes.STAMPING;
-            SERIALIZER_REGISTER.register(eventBus);
-            TYPE_REGISTER.register(eventBus);
         }
     }
     public <C extends Container, T extends Recipe<C>> Optional<T> find(C inv, Level world) {

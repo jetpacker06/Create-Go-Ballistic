@@ -1,0 +1,15 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "create:scoria"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:crushed_raw_lead",
+      "chance": 0.3
+    }
+  ],
+  "processingTime": 250
+}
