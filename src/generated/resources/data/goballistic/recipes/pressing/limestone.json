@@ -2,13 +2,12 @@
   "type": "create:pressing",
   "ingredients": [
     {
-      "item": "create:scoria"
+      "item": "create:limestone"
     }
   ],
   "results": [
     {
-      "item": "create:crushed_raw_lead",
-      "chance": 0.3
+      "item": "goballistic:limestone_chunks"
     }
   ],
   "processingTime": 250

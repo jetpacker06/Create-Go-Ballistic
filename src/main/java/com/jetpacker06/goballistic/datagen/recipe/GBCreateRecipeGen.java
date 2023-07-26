@@ -1,12 +1,12 @@
-package com.jetpacker06.goballistic.datagen.recipeproviders;
+package com.jetpacker06.goballistic.datagen.recipe;
 
 import com.jetpacker06.goballistic.GoBallistic;
 import com.jetpacker06.goballistic.register.GBFluids;
 import com.jetpacker06.goballistic.register.GBItems;
 import com.jetpacker06.goballistic.register.GBRecipeTypes;
+import com.jetpacker06.goballistic.register.GBTags;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.AllTags;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
@@ -195,9 +195,9 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
                 .output((float) 0.15, AllItems.CRUSHED_LEAD.get(), 1)
                 .output((float) 0.15, AllItems.CRUSHED_LEAD.get(), 1)),
                 sulfur = create("sulfur", b -> b
-                .require(AllTags.forgeItemTag("basalt"))
+                .require(GBTags.Items.BASALT.tagKey)
                 .output(GBItems.SULFUR.get())
-                .output(0.5f, GBItems.SULFUR.get()))
+                .output(.5f, GBItems.SULFUR.get()))
                 ;
         public Crushing(DataGenerator generator) {
             super(generator);
@@ -220,7 +220,7 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
     public static class Pressing extends GBCreateRecipeGen {
         CreateRecipeProvider.GeneratedRecipe
                 limestone = mineralRecycling(b -> b.duration(250)
-                .output((float) 0.3, AllItems.CRUSHED_LEAD.get(), 1)),
+                .output(1f, GBItems.LIMESTONE_CHUNKS.get(), 1)),
 
                 blank_44 = create("blank_44", b -> b
                 .require(GBItems.FILLED_CASING_44.get())
@@ -241,8 +241,8 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
         }
 
         protected GeneratedRecipe mineralRecycling(UnaryOperator<ProcessingRecipeBuilder<ProcessingRecipe<?>>> transform) {
-            create(Lang.asId(AllPaletteStoneTypes.SCORIA.name()) + "_stone_type_pressing", b -> transform.apply(b.require(AllPaletteStoneTypes.SCORIA.materialTag)));
-            return create(AllPaletteStoneTypes.SCORIA.getBaseBlock()::get, transform);
+            create(Lang.asId(AllPaletteStoneTypes.LIMESTONE.name()) + "_stone_type_pressing", b -> transform.apply(b.require(AllPaletteStoneTypes.LIMESTONE.materialTag)));
+            return create(AllPaletteStoneTypes.LIMESTONE.getBaseBlock()::get, transform);
         }
         <T extends ProcessingRecipe<?>> GeneratedRecipe create(Supplier<ItemLike> singleIngredient,
                                                                UnaryOperator<ProcessingRecipeBuilder<T>> transform) {

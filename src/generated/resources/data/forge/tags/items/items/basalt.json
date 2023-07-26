@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "minecraft:basalt",
-    "minecraft:smooth_basalt",
-    "minecraft:polished_basalt"
+    "minecraft:polished_basalt",
+    "minecraft:smooth_basalt"
   ]
 }

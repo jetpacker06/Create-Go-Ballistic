@@ -1,4 +1,4 @@
-package com.jetpacker06.goballistic.datagen.recipeproviders;
+package com.jetpacker06.goballistic.datagen.recipe;
 
 import com.jetpacker06.goballistic.GoBallistic;
 import com.jetpacker06.goballistic.register.GBItems;
