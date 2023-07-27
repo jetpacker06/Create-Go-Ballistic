@@ -23,25 +23,36 @@ public class GBTags {
         }
     }
     public enum Blocks {
+        WRENCH_PICKUP(NameSpace.CREATE)
 
         ;
-        public final TagKey<Block> tagKey;
+        public final TagKey<Block> tag;
 
         Blocks(NameSpace nameSpace, String tag) {
             ResourceLocation name = new ResourceLocation(nameSpace.id, "blocks/" + tag);
-            this.tagKey = BlockTags.create(name);
+            this.tag = BlockTags.create(name);
+        }
+
+        Blocks(NameSpace nameSpace) {
+            ResourceLocation name = new ResourceLocation(nameSpace.id, "blocks/" + this.name().toLowerCase());
+            this.tag = BlockTags.create(name);
         }
     }
 
     public enum Items {
-        BASALT(NameSpace.FORGE, "basalt")
+        BASALT(NameSpace.FORGE)
 
         ;
-        public final TagKey<Item> tagKey;
+        public final TagKey<Item> tag;
 
         Items(NameSpace nameSpace, String tag) {
             ResourceLocation name = new ResourceLocation(nameSpace.id, "items/" + tag);
-            this.tagKey = ItemTags.create(name);
+            this.tag = ItemTags.create(name);
+        }
+
+        Items(NameSpace nameSpace) {
+            ResourceLocation name = new ResourceLocation(nameSpace.id, "items/" + this.name().toLowerCase());
+            this.tag = ItemTags.create(name);
         }
     }
 }

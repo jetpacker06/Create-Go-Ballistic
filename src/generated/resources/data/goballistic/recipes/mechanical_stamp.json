@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "C",
+    "I"
+  ],
+  "key": {
+    "S": {
+      "item": "create:shaft"
+    },
+    "C": {
+      "item": "create:brass_casing"
+    },
+    "I": {
+      "tag": "forge:storage_blocks/brass"
+    }
+  },
+  "result": {
+    "item": "goballistic:mechanical_stamp"
+  }
+}

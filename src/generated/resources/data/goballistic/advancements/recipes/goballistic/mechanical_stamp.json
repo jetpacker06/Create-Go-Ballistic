@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "goballistic:mechanical_stamp"
+    ]
+  },
+  "criteria": {
+    "has_brass_casing": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create:brass_casing"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "goballistic:mechanical_stamp"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_brass_casing",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -15,9 +15,10 @@ public class GBTagGen {
     }
 
     private static void genBlockTags(RegistrateTagsProvider<Block> prov) {
+        //prov.tag(GBTags.Blocks.WRENCH_PICKUP.tag).add();
     }
 
     private static void genItemTags(RegistrateTagsProvider<Item> prov) {
-        prov.tag(GBTags.Items.BASALT.tagKey).add(Items.BASALT, Items.POLISHED_BASALT, Items.SMOOTH_BASALT);
+        prov.tag(GBTags.Items.BASALT.tag).add(Items.BASALT, Items.POLISHED_BASALT, Items.SMOOTH_BASALT);
     }
 }
