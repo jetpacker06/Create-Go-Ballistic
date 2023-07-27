@@ -1,12 +1,12 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"4": "create:block/mechanical_press_side",
-		"particle": "create:block/mechanical_press_side",
-		"gearbox_top": "create:block/gearbox_top",
-		"gearbox": "create:block/gearbox",
-		"mechanical_press_top": "create:block/mechanical_press_top",
-		"mechanical_press_bottom": "create:block/mechanical_press_bottom"
+		"4": "goballistic:block/mechanical_stamp_side",
+		"particle": "goballistic:block/mechanical_stamp_side",
+		"gearbox_top": "goballistic:block/brass_gearbox_top",
+		"gearbox": "create:block/brass_gearbox",
+		"mechanical_press_top": "create:block/brass_block",
+		"mechanical_press_bottom": "goballistic:block/mechanical_stamp_bottom"
 	},
 	"elements": [
 		{
