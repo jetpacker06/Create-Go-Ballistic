@@ -46,7 +46,7 @@ public class StampInstance extends ShaftInstance<MechanicalStampBlockEntity> imp
     private float getRenderedHeadOffset(MechanicalStampBlockEntity press) {
         StampingBehavior pressingBehaviour = press.getStampingBehavior();
         return pressingBehaviour.getRenderedHeadOffset(AnimationTickHolder.getPartialTicks())
-                * pressingBehaviour.mode.headOffset;
+                * StampingBehavior.Mode.headOffset;
     }
 
     @Override

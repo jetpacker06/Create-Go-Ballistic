@@ -255,12 +255,8 @@ public class StampingBehavior extends BeltProcessingBehaviour {
     }
 
     public enum Mode {
-        WORLD(1), BELT(19f / 16f);
+        WORLD, BELT;
 
-        public final float headOffset;
-
-        Mode(float headOffset) {
-            this.headOffset = headOffset;
-        }
+        public static final float headOffset = 19f / 16f;
     }
 }
