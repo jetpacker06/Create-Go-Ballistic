@@ -126,6 +126,11 @@ dependencies {
     compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}"))
     runtimeOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
 
+    //NBT viewer
+
+    implementation fg.deobf("curse.maven:nbtviewer-514135:${3553599}")
+
+
 
     // mixin thing
     annotationProcessor "org.spongepowered:mixin:0.8.3:processor"

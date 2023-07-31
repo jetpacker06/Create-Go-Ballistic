@@ -2,6 +2,10 @@ package com.jetpacker06.goballistic.register;
 
 import com.jetpacker06.goballistic.content.basic.item.BatGuanoItem;
 import com.jetpacker06.goballistic.content.bullet.*;
+import com.jetpacker06.goballistic.content.gun.FlintlockItem;
+import com.jetpacker06.goballistic.content.gun.RevolverItem;
+import com.jetpacker06.goballistic.content.gun.RifleItem;
+import com.jetpacker06.goballistic.content.gun.ShotgunItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;
@@ -34,6 +38,11 @@ public class GBItems {
     public static ItemEntry<Item> STAMP_44_CAL_CASING;
     public static ItemEntry<Item> STAMP_22_CAL_BULLET;
     public static ItemEntry<Item> STAMP_44_CAL_BULLET;
+
+    public static ItemEntry<FlintlockItem> FLINTLOCK;
+    public static ItemEntry<RifleItem> RIFLE;
+    public static ItemEntry<ShotgunItem> SHOTGUN;
+    public static ItemEntry<RevolverItem> REVOLVER;
 
     private static ItemEntry<Item> basic(String langName) {
         return basic(langName.replace(" ", "_").replace(".", "").toLowerCase(), langName);
@@ -89,5 +98,18 @@ public class GBItems {
         STAMP_44_CAL_BULLET = basic("stamp_bullet_44", ".44 Caliber Bullet Stamp");
         STAMP_22_CAL_CASING = basic("stamp_casing_22", ".22 Caliber Bullet Casing Stamp");
         STAMP_22_CAL_BULLET = basic("stamp_bullet_22", ".22 Caliber Bullet Stamp");
+
+        FLINTLOCK = REGISTRATE.item("flintlock", FlintlockItem::new)
+                .lang("Flintlock")
+                .register();
+        RIFLE = REGISTRATE.item("rifle", RifleItem::new)
+                .lang("Rifle")
+                .register();
+        SHOTGUN = REGISTRATE.item("shotgun", ShotgunItem::new)
+                .lang("Shotgun")
+                .register();
+        REVOLVER = REGISTRATE.item("revolver", RevolverItem::new)
+                .lang("Revolver")
+                .register();
     }
 }

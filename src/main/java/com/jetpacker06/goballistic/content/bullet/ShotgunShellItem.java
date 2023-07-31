@@ -1,8 +1,8 @@
 package com.jetpacker06.goballistic.content.bullet;
 
-import net.minecraft.world.item.Item;
+import com.jetpacker06.goballistic.content.bullet.projectile.AbstractAmmoItem;
 
-public class ShotgunShellItem extends Item implements IBulletType {
+public class ShotgunShellItem extends AbstractAmmoItem implements BulletSpecific {
     public ShotgunShellItem(Properties pProperties) {
         super(pProperties);
     }
