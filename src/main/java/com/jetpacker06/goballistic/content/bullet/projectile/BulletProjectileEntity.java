@@ -36,7 +36,7 @@ public abstract class BulletProjectileEntity extends AbstractHurtingProjectile {
 
     private BulletType bulletType;
 
-    private BulletProjectileEntity(EntityType<? extends BulletProjectileEntity> pType, Level pLevel, BulletType bulletType) {
+    public BulletProjectileEntity(EntityType<? extends BulletProjectileEntity> pType, Level pLevel, BulletType bulletType) {
         super(pType, pLevel);
         this.bulletType = bulletType;
     }
@@ -78,17 +78,14 @@ public abstract class BulletProjectileEntity extends AbstractHurtingProjectile {
 
     @Override
     public void tick() {
-        setDeltaMovement(getDeltaMovement().add(0, -0.05, 0)
+        setDeltaMovement(getDeltaMovement().add(0, -0.05/* * gravityMultiplier*/, 0)
                 .scale(bulletType.getDrag()));
-        if (this.tickCount % 20 == 0)
-            System.out.println(this.getClass().toString().split("\\$")[1] + " bullet ticked");
         super.tick();
     }
 
     public ItemStack getItem() {
-        return new ItemStack(this.bulletType.getAmmoItem());
+        return new ItemStack(bulletType.getAmmoItem());
     }
-
 
     @Override
     protected void onHitEntity(@NotNull EntityHitResult ray) {
@@ -98,6 +95,8 @@ public abstract class BulletProjectileEntity extends AbstractHurtingProjectile {
         Entity target = ray.getEntity();
         Entity owner = this.getOwner();
 
+        if (target instanceof BulletProjectileEntity)
+            return;
         if (!target.isAlive())
             return;
         if (owner instanceof LivingEntity)
@@ -114,7 +113,7 @@ public abstract class BulletProjectileEntity extends AbstractHurtingProjectile {
             target.setSecondsOnFire(5);
 
         boolean onServer = !level.isClientSide;
-        if (onServer && !target.hurt(doDamage(), bulletType.getDamage())) {
+        if (onServer && !target.hurt(doDamage(), this.getDamage())) {
             target.setRemainingFireTicks(k);
             kill();
             return;
@@ -170,6 +169,10 @@ public abstract class BulletProjectileEntity extends AbstractHurtingProjectile {
             level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(this.bulletType.getAmmoItem())), hit.x, hit.y, hit.z, m.x, m.y,
                     m.z);
         }
+    }
+
+    public float getDamage() {
+        return this.bulletType.getDamage();
     }
 
     public static class BulletDamageSource extends IndirectEntityDamageSource {

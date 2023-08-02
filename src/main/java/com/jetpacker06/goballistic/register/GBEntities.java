@@ -17,24 +17,28 @@ public class GBEntities {
                 .properties(p -> p.setTrackingRange(4)
                         .setUpdateInterval(20)
                         .setShouldReceiveVelocityUpdates(true))
+                .lang("Rifle Shot")
                 .renderer(() -> BulletProjectileRenderer::new)
                 .register();
         FLINTLOCK_SHOT = REGISTRATE.entity("flintlock_shot", BulletProjectileEntity.FlintlockShot::new, MobCategory.MISC)
                 .properties(p -> p.setTrackingRange(4)
                         .setUpdateInterval(20)
                         .setShouldReceiveVelocityUpdates(true))
+                .lang("Flintlock Shot")
                 .renderer(() -> BulletProjectileRenderer::new)
                 .register();
         REVOLVER_SHOT = REGISTRATE.entity("revolver_shot", BulletProjectileEntity.RevolverShot::new, MobCategory.MISC)
                 .properties(p -> p.setTrackingRange(4)
                         .setUpdateInterval(20)
                         .setShouldReceiveVelocityUpdates(true))
+                .lang("Revolver Shot")
                 .renderer(() -> BulletProjectileRenderer::new)
                 .register();
         SHOTGUN_SHOT = REGISTRATE.entity("shotgun_shot", BulletProjectileEntity.ShotgunShot::new, MobCategory.MISC)
                 .properties(p -> p.setTrackingRange(4)
                         .setUpdateInterval(20)
                         .setShouldReceiveVelocityUpdates(true))
+                .lang("Shotgun Pellet")
                 .renderer(() -> BulletProjectileRenderer::new)
                 .register();
     }

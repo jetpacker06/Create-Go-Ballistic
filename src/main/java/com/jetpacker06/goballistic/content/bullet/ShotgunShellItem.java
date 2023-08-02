@@ -1,8 +1,6 @@
 package com.jetpacker06.goballistic.content.bullet;
 
-import com.jetpacker06.goballistic.content.bullet.projectile.AbstractAmmoItem;
-
-public class ShotgunShellItem extends AbstractAmmoItem implements BulletSpecific {
+public class ShotgunShellItem extends AbstractAmmoItem {
     public ShotgunShellItem(Properties pProperties) {
         super(pProperties);
     }

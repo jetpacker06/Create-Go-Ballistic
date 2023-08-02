@@ -6,6 +6,7 @@ import com.jetpacker06.goballistic.content.gun.FlintlockItem;
 import com.jetpacker06.goballistic.content.gun.RevolverItem;
 import com.jetpacker06.goballistic.content.gun.RifleItem;
 import com.jetpacker06.goballistic.content.gun.ShotgunItem;
+import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;
@@ -101,15 +102,19 @@ public class GBItems {
 
         FLINTLOCK = REGISTRATE.item("flintlock", FlintlockItem::new)
                 .lang("Flintlock")
+                .model(AssetLookup.existingItemModel())
                 .register();
         RIFLE = REGISTRATE.item("rifle", RifleItem::new)
                 .lang("Rifle")
+                .model(AssetLookup.existingItemModel())
                 .register();
         SHOTGUN = REGISTRATE.item("shotgun", ShotgunItem::new)
+                .model(AssetLookup.existingItemModel())
                 .lang("Shotgun")
                 .register();
         REVOLVER = REGISTRATE.item("revolver", RevolverItem::new)
                 .lang("Revolver")
+                .model(AssetLookup.existingItemModel())
                 .register();
     }
 }

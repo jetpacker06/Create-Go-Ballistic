@@ -1,11 +1,7 @@
 package com.jetpacker06.goballistic.content.bullet;
 
-import com.jetpacker06.goballistic.content.bullet.projectile.AbstractAmmoItem;
-import net.minecraft.world.item.Item;
-
-public class MinieBallItem extends AbstractAmmoItem implements BulletSpecific {
-
-    public MinieBallItem(Item.Properties pProperties) {
+public class MinieBallItem extends AbstractAmmoItem {
+    public MinieBallItem(Properties pProperties) {
         super(pProperties);
     }
 

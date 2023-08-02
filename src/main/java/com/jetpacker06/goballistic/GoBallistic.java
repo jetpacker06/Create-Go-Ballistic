@@ -7,6 +7,7 @@ import com.jetpacker06.goballistic.datagen.GBTagGen;
 import com.jetpacker06.goballistic.packet.GBPacketHandling;
 import com.jetpacker06.goballistic.register.*;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -34,13 +35,13 @@ public class GoBallistic {
         GBEntities.registerEntities(REGISTRATE);
 
         GBRecipeTypes.Registers.register(eventBus);
+        GBSoundEvents.register(eventBus);
 
         GBLang.register();
-        eventBus.addListener(EventPriority.LOWEST, this::gatherData);
-        eventBus.addListener(EventPriority.LOWEST, this::commonSetup);
-
         GBPacketHandling.init();
 
+        eventBus.addListener(EventPriority.LOWEST, this::gatherData);
+        eventBus.addListener(EventPriority.LOWEST, this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -52,5 +53,9 @@ public class GoBallistic {
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
+    }
+
+    public static ResourceLocation resource(String path) {
+        return new ResourceLocation(MOD_ID, path);
     }
 }

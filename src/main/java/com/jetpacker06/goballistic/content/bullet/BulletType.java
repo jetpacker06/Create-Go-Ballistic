@@ -1,6 +1,5 @@
 package com.jetpacker06.goballistic.content.bullet;
 
-import com.jetpacker06.goballistic.content.bullet.projectile.AbstractAmmoItem;
 import com.jetpacker06.goballistic.content.bullet.projectile.BulletProjectileEntity;
 import com.jetpacker06.goballistic.register.GBEntities;
 import com.jetpacker06.goballistic.register.GBItems;
@@ -12,7 +11,7 @@ import net.minecraft.world.entity.EntityType;
 public enum BulletType {
     CAL_22(GBItems.CARTRIDGE_22, GBEntities.REVOLVER_SHOT, new Properties().damage(6)),
     CAL_44(GBItems.CARTRIDGE_44, GBEntities.RIFLE_SHOT, new Properties().damage(8)),
-    SHELL(GBItems.SHELL, GBEntities.SHOTGUN_SHOT, new Properties().damage(2).spread(5)),
+    SHELL(GBItems.SHELL, GBEntities.SHOTGUN_SHOT, new Properties().damage(12).spread(5)),
     MINIE_BALL(GBItems.MINIE_BALL, GBEntities.FLINTLOCK_SHOT, new Properties().damage(12));
 
 
@@ -21,12 +20,14 @@ public enum BulletType {
     final float drag;
     final int spread;
     final float damage;
+    final float knockback;
     BulletType(ItemEntry<? extends AbstractAmmoItem> ammoItem, EntityEntry<? extends BulletProjectileEntity> entityEntry, Properties properties) {
         this.ammoItem = ammoItem;
         this.entityEntry = entityEntry;
         this.drag = properties.drag;
         this.spread = properties.spread;
         this.damage = properties.damage;
+        this.knockback = properties.knockback;
     }
 
     public float getDrag() {
@@ -50,7 +51,7 @@ public enum BulletType {
     }
 
     public @NonnullType EntityType<? extends BulletProjectileEntity> getEntity() {
-        return this.entityEntry.get();
+        return this.getEntityEntry().get();
     }
 
     public EntityEntry<? extends BulletProjectileEntity> getEntityEntry() {
@@ -61,6 +62,7 @@ public enum BulletType {
         private int spread = 1;
         private float drag = 0.99f;
         private float damage = 8;
+        private float knockback = 1;
 
         public Properties spread(int spread) {
             this.spread = spread;
@@ -74,6 +76,11 @@ public enum BulletType {
 
         public Properties damage(float damage) {
             this.damage = damage;
+            return this;
+        }
+
+        public Properties knockback(float knockback) {
+            this.knockback = knockback;
             return this;
         }
     }

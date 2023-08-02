@@ -1,6 +1,9 @@
 package com.jetpacker06.goballistic.content.gun;
 
 import com.jetpacker06.goballistic.content.bullet.BulletType;
+import com.jetpacker06.goballistic.register.GBSoundEvents;
+import net.minecraft.sounds.SoundEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class ShotgunItem extends AbstractGunItem {
 
@@ -11,5 +14,10 @@ public class ShotgunItem extends AbstractGunItem {
     @Override
     public int getDefaultProjectileRange() {
         return 222;
+    }
+
+    @Override
+    public @NotNull SoundEvent getFireSound() {
+        return GBSoundEvents.SHOTGUN_SHOT.get();
     }
 }

@@ -1,14 +1,16 @@
 package com.jetpacker06.goballistic.content.gun;
 
+import com.jetpacker06.goballistic.content.bullet.AbstractAmmoItem;
 import com.jetpacker06.goballistic.content.bullet.BulletSpecific;
 import com.jetpacker06.goballistic.content.bullet.BulletType;
-import com.jetpacker06.goballistic.content.bullet.projectile.AbstractAmmoItem;
 import com.jetpacker06.goballistic.content.bullet.projectile.BulletProjectileEntity;
 import com.simibubi.create.content.equipment.zapper.ShootableGadgetItemMethods;
 import com.simibubi.create.foundation.utility.VecHelper;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -21,14 +23,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Predicate;
 
 public abstract class AbstractGunItem extends ProjectileWeaponItem {
-    private final int maxCartridgeStorage;
+    private final int maxAmmoStorage;
     private final ItemEntry<? extends AbstractAmmoItem> ammoItem;
     private final BulletType bulletType;
     public Predicate<ItemStack> BULLET_MATCHES;
 
-    public AbstractGunItem(Properties properties, BulletType bulletType, int maxCartridgeStorage) {
+    public AbstractGunItem(Properties properties, BulletType bulletType, int maxAmmoStorage) {
         super(properties);
-        this.maxCartridgeStorage = maxCartridgeStorage;
+        this.maxAmmoStorage = maxAmmoStorage;
         this.ammoItem = bulletType.getAmmoItemEntry();
         this.bulletType = bulletType;
 
@@ -44,17 +46,15 @@ public abstract class AbstractGunItem extends ProjectileWeaponItem {
         return this.ammoItem.get();
     }
 
-    public int getMaxCartridgeStorage() {
-        return this.maxCartridgeStorage;
+    public int getMaxAmmoStorage() {
+        return this.maxAmmoStorage;
     }
 
     public BulletType getBulletType() {
         return this.bulletType;
     }
 
-    public ItemStack makeFullAmmoStack() {
-        return new ItemStack(getAmmoItem(), getMaxCartridgeStorage());
-    }
+    public abstract @NotNull SoundEvent getFireSound();
 
     @Override
     public @NotNull Predicate<ItemStack> getAllSupportedProjectiles() {
@@ -69,17 +69,13 @@ public abstract class AbstractGunItem extends ProjectileWeaponItem {
 
         return super.use(pLevel, pPlayer, pHand);
     }
-    
-    public static void reload(Level pLevel, Player pPlayer, ItemStack pGunStack) {
-      //  System.out.println("Reloading...");
-      //  System.out.println("Ammo in gun: " + cartridgesInGun(pGunStack));
 
+    public static void reload(Level pLevel, Player pPlayer, ItemStack pGunStack) {
         AbstractGunItem item = (AbstractGunItem) pGunStack.getItem();
-        int cartridgesMissing = item.getMaxCartridgeStorage() - cartridgesInGun(pGunStack);
+        int cartridgesMissing = item.getMaxAmmoStorage() - cartridgesInGun(pGunStack);
         int ammoFound = findAmmo(pPlayer, pGunStack, cartridgesMissing);
         CompoundTag tag = pGunStack.getOrCreateTag();
-        tag.putInt("AmmoCount", item.getMaxCartridgeStorage() - cartridgesMissing + ammoFound);
-      //  System.out.println("New ammo count: " + tag.getInt("AmmoCount"));
+        tag.putInt("AmmoCount", item.getMaxAmmoStorage() - cartridgesMissing + ammoFound);
     }
 
     public static int findAmmo(Player pPlayer, ItemStack pGunStack, int cartridgesMissing) {
@@ -97,19 +93,16 @@ public abstract class AbstractGunItem extends ProjectileWeaponItem {
                 if (bulletsFound == cartridgesMissing) return bulletsFound;
             }
         }
-    //    System.out.println("Is creative? " + pPlayer.isCreative());
         if (pPlayer.isCreative()) {
-            return gunItem.getMaxCartridgeStorage() - cartridgesMissing;
+            return gunItem.getMaxAmmoStorage() - cartridgesMissing;
         }
         return bulletsFound;
     }
 
     public void onLeftClick(Level pLevel, Player pPlayer, ItemStack pGunStack) {
-        System.out.println("Left click using gun detected");
         if (cartridgesInGun(pGunStack) > 0) {
-            System.out.println("firing gun");
             fireGun(pLevel, pPlayer, pGunStack);
-        } else System.out.println("No ammo");
+        }
     }
     
     public static int cartridgesInGun(ItemStack pGunStack) {
@@ -126,22 +119,14 @@ public abstract class AbstractGunItem extends ProjectileWeaponItem {
 
     public static void fireGun(Level pLevel, Player pPlayer, ItemStack pGunStack) {
         AbstractGunItem gun = (AbstractGunItem) pGunStack.getItem();
-    //    BulletType type = gun.getBulletType();
-
-    //    int ammo = cartridgesInGun(pGunStack);
-    //    System.out.println("ammo: " + ammo);
-
-        shootBullet(pLevel, pPlayer, pGunStack);
+        shootBullet(pLevel, pPlayer, gun);
         decrementAmmo(pGunStack);
 
-    //    ammo = cartridgesInGun(pGunStack);
-    //    System.out.println("ammo after firing: " + ammo);
+        pLevel.playSound(pPlayer, pPlayer.getOnPos().above(), gun.getFireSound(), SoundSource.PLAYERS, 1f, 1f);
     }
 
-    public static void shootBullet(Level pLevel, Player pPlayer, ItemStack pGunStack) {
-        AbstractGunItem item = (AbstractGunItem) pGunStack.getItem();
+    public static void shootBullet(Level pLevel, Player pPlayer, AbstractGunItem item) {
         BulletType type = item.getBulletType();
-
 
         Vec3 barrelPos = ShootableGadgetItemMethods.getGunBarrelVec(pPlayer, true,
                 new Vec3(.75f, -0.15f, 1.5f));
@@ -150,35 +135,30 @@ public abstract class AbstractGunItem extends ProjectileWeaponItem {
                         .subtract(pPlayer.position()
                                 .add(0, pPlayer.getEyeHeight(), 0));
 
-        Vec3 lookVec = pPlayer.getLookAngle();
-        Vec3 motion = lookVec.add(correction)
+        Vec3 motion = pPlayer.getLookAngle().add(correction)
                 .normalize()
                 .scale(2);
-        //     .scale(projectileType.getVelocityMultiplier());
 
-
-        boolean spray = type.getSpread() > 1;
         Vec3 sprayBase = VecHelper.rotate(new Vec3(0, 0.1, 0), 360 * pPlayer.getRandom().nextFloat(), Direction.Axis.Z);
-        float sprayChange = 360f / type.getSpread();
         for (int i = 0; i < type.getSpread(); i++) {
-            BulletProjectileEntity projectile = type.getEntity().create(pLevel);
-
-            Vec3 splitMotion = motion;
-            if (spray) {
-                float imperfection = 40 * (pPlayer.getRandom().nextFloat() - 0.5f);
-                Vec3 sprayOffset = VecHelper.rotate(sprayBase, i * sprayChange + imperfection, Direction.Axis.Z);
-                splitMotion = splitMotion.add(VecHelper.lookAt(sprayOffset, motion));
-            }
-
-            assert projectile != null;
-            projectile.setPos(barrelPos.x, barrelPos.y, barrelPos.z);
-            projectile.setDeltaMovement(splitMotion);
-            projectile.setOwner(pPlayer);
-
-
-            pLevel.addFreshEntity(projectile);
-            System.out.println("added entity");
+            item.fireProjectile(pPlayer, pLevel, motion, barrelPos, sprayBase, i);
         }
+    }
+
+    public void fireProjectile(Player pPlayer, Level pLevel, Vec3 motion, Vec3 barrelPos, Vec3 sprayBase, int iteration) {
+        BulletProjectileEntity projectile = this.bulletType.getEntity().create(pLevel);
+        float sprayChange = 360f / this.bulletType.getSpread();
+        if (this.bulletType.getSpread() > 1) {
+            float imperfection = 25 * (pPlayer.getRandom().nextFloat() - 0.5f);
+            Vec3 sprayOffset = VecHelper.rotate(sprayBase, iteration * sprayChange + imperfection, Direction.Axis.Z);
+            motion = motion.add(VecHelper.lookAt(sprayOffset, motion));
+        }
+
+        assert projectile != null;
+        projectile.setPos(barrelPos.x, barrelPos.y, barrelPos.z);
+        projectile.setDeltaMovement(motion);
+        projectile.setOwner(pPlayer);
+        pLevel.addFreshEntity(projectile);
     }
 
     public static BulletType getRequiredBulletType(ItemStack pGunStack) {
