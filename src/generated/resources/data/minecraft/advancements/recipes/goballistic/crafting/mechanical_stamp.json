@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:crafting/mechanical_stamp"
+    ]
+  },
+  "criteria": {
+    "has_brass_casing": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create:brass_casing"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:crafting/mechanical_stamp"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_brass_casing",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "minecraft:heavy_weighted_pressure_plate"
+    "item": "goballistic:lead_ingot"
   },
   "result": "goballistic:shell_pellets",
   "count": 2

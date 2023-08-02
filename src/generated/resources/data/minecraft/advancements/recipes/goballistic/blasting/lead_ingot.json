@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "goballistic:mechanical_stamp"
+      "minecraft:blasting/lead_ingot"
     ]
   },
   "criteria": {
-    "has_brass_casing": {
+    "has_crushed_lead": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "create:brass_casing"
+              "create:crushed_raw_lead"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "goballistic:mechanical_stamp"
+        "recipe": "minecraft:blasting/lead_ingot"
       }
     }
   },
   "requirements": [
     [
-      "has_brass_casing",
+      "has_crushed_lead",
       "has_the_recipe"
     ]
   ]
