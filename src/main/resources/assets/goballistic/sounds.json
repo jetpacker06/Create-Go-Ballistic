@@ -1,0 +1,26 @@
+{
+  "rifle_shot": {
+    "subtitle": "brass_call_bell_ding",
+    "sounds": [
+      "goballistic:gunshot"
+    ]
+  },
+  "revolver_shot": {
+    "subtitle": "brass_call_bell_ding",
+    "sounds": [
+      "goballistic:gunshot"
+    ]
+  },
+  "flintlock_shot": {
+    "subtitle": "brass_call_bell_ding",
+    "sounds": [
+      "goballistic:gunshot"
+    ]
+  },
+  "shotgun_shot": {
+    "subtitle": "brass_call_bell_ding",
+    "sounds": [
+      "goballistic:gunshot"
+    ]
+  }
+}
