@@ -19,18 +19,10 @@ public class GBPacketHandling {
         int id = 0;
         INSTANCE.registerMessage(
                 ++id,
-                GunfireEmptyPacket.class,
-                (packet, buf) -> {
-                    buf.writeItemStack(packet.gunStack(), true);
-                },
-                buf -> new GunfireEmptyPacket(buf.readItem()),
-                (packet, ctx) -> {
-                    ctx.get().enqueueWork(() -> {
-                        GBEventHandling.activateGun(ctx.get().getSender(), packet.gunStack());
-                    });
-                }
+                ClickedEmptyPacket.class,
+                (packet, buf) -> buf.writeItemStack(packet.gunStack(), true),
+                buf -> new ClickedEmptyPacket(buf.readItem()),
+                (packet, ctx) -> ctx.get().enqueueWork(() -> GBEventHandling.activateGun(ctx.get().getSender(), packet.gunStack()))
         );
     }
-
-
 }
