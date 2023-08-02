@@ -28,6 +28,9 @@ public class GBVanillaRecipes extends RecipeProvider implements IConditionBuilde
     @Override
     protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> cons) {
         GBVanillaRecipes.c = cons;
+        final String CRAFTING = "crafting/";
+        final String SMELTING = "smelting/";
+        final String BLASTING = "blasting/";
 
         // CRAFTING
         ShapedRecipeBuilder.shaped(GBBlocks.MECHANICAL_STAMP.get(), 1)
@@ -39,11 +42,19 @@ public class GBVanillaRecipes extends RecipeProvider implements IConditionBuilde
                 .pattern("I")
                 .unlockedBy("has_brass_casing", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(AllBlocks.BRASS_CASING.get()).build()))
-                .save(c);
+                .save(c, CRAFTING + "mechanical_stamp");
 
         // SMELTING
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(AllItems.CRUSHED_LEAD.get()), GBItems.LEAD_INGOT.get(), 1.0f, 200);
-        SimpleCookingRecipeBuilder.blasting(Ingredient.of(AllItems.CRUSHED_LEAD.get()), GBItems.LEAD_INGOT.get(), 1.0f, 100);
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(AllItems.CRUSHED_LEAD.get()), GBItems.LEAD_INGOT.get(), 1.0f, 200)
+                .unlockedBy("has_crushed_lead", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(AllItems.CRUSHED_LEAD.get()).build()))
+                .save(c, SMELTING + "lead_ingot");
+
+        // BLASTING
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(AllItems.CRUSHED_LEAD.get()), GBItems.LEAD_INGOT.get(), 1.0f, 100)
+                .unlockedBy("has_crushed_lead", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(AllItems.CRUSHED_LEAD.get()).build()))
+                .save(c, BLASTING + "lead_ingot");
 
         // STONECUTTING
         cut("stamp_44_cal_casing", Items.HEAVY_WEIGHTED_PRESSURE_PLATE, GBItems.STAMP_44_CAL_CASING.get());
@@ -61,7 +72,7 @@ public class GBVanillaRecipes extends RecipeProvider implements IConditionBuilde
 
     @SuppressWarnings("SameParameterValue")
     private void cut(String name, ItemLike input, Item output, int count) {
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Items.HEAVY_WEIGHTED_PRESSURE_PLATE), output, count)
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), output, count)
                 .unlockedBy(getHasName(input), has(output)).save(c, GoBallistic.MOD_ID + ":stonecutting/" + name);
     }
 }

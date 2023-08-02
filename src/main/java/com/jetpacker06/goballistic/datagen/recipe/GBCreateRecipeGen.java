@@ -7,7 +7,6 @@ import com.jetpacker06.goballistic.register.GBRecipeTypes;
 import com.jetpacker06.goballistic.register.GBTags;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.Create;
 import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
@@ -180,7 +179,7 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
                 return register(consumer -> {
                     MechanicalCraftingRecipeBuilder b =
                             builder.apply(MechanicalCraftingRecipeBuilder.shapedRecipe(result.get(), amount));
-                    ResourceLocation location = Create.asResource("mechanical_crafting/" + RegisteredObjects.getKeyOrThrow(result.get()
+                    ResourceLocation location = new ResourceLocation(GoBallistic.MOD_ID, "mechanical_crafting/" + RegisteredObjects.getKeyOrThrow(result.get()
                                     .asItem())
                             .getPath() + suffix);
                     b.build(consumer, location);
@@ -272,7 +271,7 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
                 .output(GBItems.BULLET_44.get(), 2)),
                 stamp_casing_44 = create("stamp_casing_44", b -> b
                 .require(AllItems.BRASS_SHEET.get())
-                .require(GBItems.STAMP_44_CAL_BULLET.get())
+                .require(GBItems.STAMP_44_CAL_CASING.get())
                 .output(GBItems.CASING_44.get(), 2)),
                 stamp_bullet_22 = create("stamp_bullet_22", b -> b
                 .require(GBItems.LEAD_INGOT.get())
@@ -280,7 +279,7 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
                 .output(GBItems.BULLET_22.get(), 2)),
                 stamp_casing_22  = create("stamp_casing_22", b -> b
                 .require(AllItems.BRASS_SHEET.get())
-                .require(GBItems.STAMP_22_CAL_BULLET.get())
+                .require(GBItems.STAMP_22_CAL_CASING.get())
                 .output(GBItems.CASING_22.get(), 2))
                 ;
         public Stamping(DataGenerator generator) {
