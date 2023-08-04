@@ -1,5 +1,6 @@
-package com.jetpacker06.goballistic.jei;
+package com.jetpacker06.goballistic.content.kinetics.stamp;
 
+import com.jetpacker06.goballistic.register.GBBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.simibubi.create.AllBlocks;
@@ -23,7 +24,7 @@ public class AnimatedStamp extends AnimatedKinetics {
                 .scale(scale)
                 .render(matrixStack);
 
-        blockElement(AllBlocks.MECHANICAL_PRESS.getDefaultState())
+        blockElement(GBBlocks.MECHANICAL_STAMP.getDefaultState())
                 .scale(scale)
                 .render(matrixStack);
 

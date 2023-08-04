@@ -37,7 +37,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class GBJEIPlugin implements IModPlugin {
 
-    public static ResourceLocation UID = new ResourceLocation(GoBallistic.MOD_ID, "jei_plugin");
+    public static ResourceLocation UID = GoBallistic.resource("jei_plugin");
     private final ArrayList<CreateRecipeCategory<?>> categories = new ArrayList<>();
 
     @Override
@@ -144,7 +144,7 @@ public class GBJEIPlugin implements IModPlugin {
             }
 
             CreateRecipeCategory.Info<T> info = new CreateRecipeCategory.Info<>(
-                    new mezz.jei.api.recipe.RecipeType<>(new ResourceLocation(GoBallistic.MOD_ID, name), recipeClass),
+                    new mezz.jei.api.recipe.RecipeType<>(GoBallistic.resource(name), recipeClass),
                     new TranslatableComponent(GoBallistic.MOD_ID + ".recipe." + name), background, icon, recipesSupplier, catalysts);
             var cat = factory.create(info);
             categories.add(cat);
