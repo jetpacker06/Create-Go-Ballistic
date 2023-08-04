@@ -1,7 +1,6 @@
 package com.jetpacker06.goballistic.register;
 
 import com.jetpacker06.goballistic.GoBallistic;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -17,7 +16,7 @@ public class GBSoundEvents {
     public static final RegistryObject<SoundEvent> REVOLVER_SHOT = register("revolver_shot");
 
     public static RegistryObject<SoundEvent> register(String name) {
-        return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(GoBallistic.MOD_ID, name)));
+        return SOUND_EVENTS.register(name, () -> new SoundEvent(GoBallistic.resource(name)));
     }
 
     public static void register(IEventBus eventBus) {

@@ -24,13 +24,15 @@ import java.util.function.Predicate;
 
 public abstract class AbstractGunItem extends ProjectileWeaponItem {
     private final int maxAmmoStorage;
+    private final int cooldownTicks;
     private final ItemEntry<? extends AbstractAmmoItem> ammoItem;
     private final BulletType bulletType;
     public Predicate<ItemStack> BULLET_MATCHES;
 
-    public AbstractGunItem(Properties properties, BulletType bulletType, int maxAmmoStorage) {
-        super(properties);
+    public AbstractGunItem(Properties properties, BulletType bulletType, int maxAmmoStorage, int cooldownTicks) {
+        super(properties.stacksTo(1));
         this.maxAmmoStorage = maxAmmoStorage;
+        this.cooldownTicks = cooldownTicks;
         this.ammoItem = bulletType.getAmmoItemEntry();
         this.bulletType = bulletType;
 
@@ -48,6 +50,10 @@ public abstract class AbstractGunItem extends ProjectileWeaponItem {
 
     public int getMaxAmmoStorage() {
         return this.maxAmmoStorage;
+    }
+
+    public int getCooldownTicks() {
+        return this.cooldownTicks;
     }
 
     public BulletType getBulletType() {
@@ -102,6 +108,7 @@ public abstract class AbstractGunItem extends ProjectileWeaponItem {
     public void onLeftClick(Level pLevel, Player pPlayer, ItemStack pGunStack) {
         if (cartridgesInGun(pGunStack) > 0) {
             fireGun(pLevel, pPlayer, pGunStack);
+            pPlayer.getCooldowns().addCooldown(this, this.getCooldownTicks());
         }
     }
     

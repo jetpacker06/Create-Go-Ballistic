@@ -13,8 +13,7 @@
   ],
   "results": [
     {
-      "fluid": "goballistic:gunpowder",
-      "amount": 250
+      "item": "minecraft:gunpowder"
     }
   ]
 }

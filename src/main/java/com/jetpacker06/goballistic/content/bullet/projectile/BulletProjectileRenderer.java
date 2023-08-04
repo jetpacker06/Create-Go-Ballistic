@@ -59,6 +59,6 @@ public class BulletProjectileRenderer extends EntityRenderer<BulletProjectileEnt
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull BulletProjectileEntity pEntity) {
-        return new ResourceLocation(GoBallistic.MOD_ID, "block/lead_block");
+        return GoBallistic.resource("block/lead_block");
     }
 }

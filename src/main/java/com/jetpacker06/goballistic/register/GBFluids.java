@@ -7,15 +7,13 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.FluidEntry;
 
 public class GBFluids {
-  //  public static ResourceLocation waterStill = new ResourceLocation("block/water_still");
-  //  public static ResourceLocation waterFlow = new ResourceLocation("block/water_flow");
+    private static final CreateRegistrate REGISTRATE = GoBallistic.REGISTRATE;
 
-    public static FluidEntry<VirtualFluid> GUNPOWDER;
+    public static final FluidEntry<VirtualFluid> GUNPOWDER = REGISTRATE.virtualFluid("gunpowder",
+                    GoBallistic.resource("fluid/gunpowder_still"), GoBallistic.resource("fluid/gunpowder_flow"))
+            .lang("Gunpowder")
+            .tag(AllTags.forgeFluidTag("gunpowder"))
+            .register();
 
-    public static void registerFluids(CreateRegistrate registrate) {
-        GUNPOWDER = registrate.virtualFluid("gunpowder", GoBallistic.resource("fluid/gunpowder_still"), GoBallistic.resource("fluid/gunpowder_flow"))
-                .lang("Gunpowder")
-                .tag(AllTags.forgeFluidTag("gunpowder"))
-                .register();
-    }
+    public static void load() {}
 }

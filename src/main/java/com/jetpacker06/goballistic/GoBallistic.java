@@ -20,24 +20,22 @@ import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 public class GoBallistic {
     public static final String MOD_ID = "goballistic";
     public static final String NAME = "Create: Go Ballistic";
-    public static CreateRegistrate REGISTRATE;
+    private static final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public static CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID).registerEventListeners(eventBus);
 
     public GoBallistic() {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        REGISTRATE = CreateRegistrate.create(MOD_ID).registerEventListeners(eventBus);
         REGISTRATE.creativeModeTab(() -> GBTab.GBT);
 
-        GBItems.registerItems(REGISTRATE);
-        GBBlocks.registerBlocks(REGISTRATE);
-        GBBlockEntities.registerBlockEntities(REGISTRATE);
-        GBFluids.registerFluids(REGISTRATE);
-        GBEntities.registerEntities(REGISTRATE);
+        GBItems.load();
+        GBBlocks.load();
+        GBBlockEntities.load();
+        GBFluids.load();
+        GBEntities.load();
 
         GBRecipeTypes.Registers.register(eventBus);
         GBSoundEvents.register(eventBus);
 
-        GBLang.register();
+        GBLang.load();
         GBPacketHandling.init();
 
         eventBus.addListener(EventPriority.LOWEST, this::gatherData);
@@ -46,9 +44,9 @@ public class GoBallistic {
     }
 
     public void gatherData(GatherDataEvent event) {
-        GBTagGen.datagen(REGISTRATE);
         if (event.includeServer()) {
             DataGenerators.gatherData(event);
+            GBTagGen.datagen();
         }
     }
 

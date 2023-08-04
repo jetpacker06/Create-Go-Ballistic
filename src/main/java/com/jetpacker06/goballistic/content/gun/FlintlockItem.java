@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 public class FlintlockItem extends AbstractGunItem {
 
     public FlintlockItem(Properties p_43009_) {
-        super(p_43009_, BulletType.MINIE_BALL, 1);
+        super(p_43009_, BulletType.MINIE_BALL, 1, 30);
     }
 
     @Override

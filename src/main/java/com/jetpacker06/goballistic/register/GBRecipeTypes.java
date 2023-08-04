@@ -40,7 +40,7 @@ public enum GBRecipeTypes implements IRecipeTypeInfo {
     }
     GBRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
         String name = Lang.asId(this.name());
-        id = new ResourceLocation(GoBallistic.MOD_ID, name);
+        id = GoBallistic.resource(name);
         serializerObject = Registers.SERIALIZER_REGISTER.register(name, serializerSupplier);
         typeObject = Registers.TYPE_REGISTER.register(name, () -> AllRecipeTypes.simpleType(id));
         type = typeObject;

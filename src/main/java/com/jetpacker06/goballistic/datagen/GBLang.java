@@ -1,7 +1,6 @@
 package com.jetpacker06.goballistic.datagen;
 
 import com.jetpacker06.goballistic.GoBallistic;
-import com.simibubi.create.foundation.data.CreateRegistrate;
 
 public class GBLang {
     private static final String id = GoBallistic.MOD_ID;
@@ -11,7 +10,7 @@ public class GBLang {
         GoBallistic.REGISTRATE.addRawLang(key, value);
     }
 
-    public static void register() {
+    public static void load() {
         add("itemGroup." + id, name);
         add(id + ".recipe.stamping", "Stamping");
         add(id + ".recipe.assembling.stamping_item", "Process with Stamp");

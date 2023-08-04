@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 public class RevolverItem extends AbstractGunItem {
 
     public RevolverItem(Properties p_43009_) {
-        super(p_43009_, BulletType.CAL_22, 6);
+        super(p_43009_, BulletType.CAL_22, 6, 5);
     }
 
     @Override

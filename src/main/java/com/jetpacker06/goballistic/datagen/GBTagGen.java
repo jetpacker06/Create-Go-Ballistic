@@ -1,5 +1,6 @@
 package com.jetpacker06.goballistic.datagen;
 
+import com.jetpacker06.goballistic.GoBallistic;
 import com.jetpacker06.goballistic.register.GBTags;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.providers.ProviderType;
@@ -9,7 +10,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 
 public class GBTagGen {
-    public static void datagen(CreateRegistrate REGISTRATE) {
+    private static final CreateRegistrate REGISTRATE = GoBallistic.REGISTRATE;
+
+    public static void datagen() {
         REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, GBTagGen::genBlockTags);
         REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, GBTagGen::genItemTags);
     }
