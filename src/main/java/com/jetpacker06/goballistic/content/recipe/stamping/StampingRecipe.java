@@ -1,4 +1,4 @@
-package com.jetpacker06.goballistic.content.kinetics.stamp;
+package com.jetpacker06.goballistic.content.recipe.stamping;
 
 import com.google.gson.JsonObject;
 import com.jetpacker06.goballistic.GoBallistic;

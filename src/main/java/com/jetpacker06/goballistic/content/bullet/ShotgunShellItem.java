@@ -1,5 +1,5 @@
 package com.jetpacker06.goballistic.content.bullet;
-
+/*
 public class ShotgunShellItem extends AbstractAmmoItem {
     public ShotgunShellItem(Properties pProperties) {
         super(pProperties);
@@ -10,3 +10,4 @@ public class ShotgunShellItem extends AbstractAmmoItem {
         return BulletType.SHELL;
     }
 }
+*/

@@ -200,11 +200,11 @@ public abstract class BulletProjectileEntity extends AbstractHurtingProjectile {
             super(pType, pLevel, BulletType.MINIE_BALL);
         }
     }
-    public static class ShotgunShot extends BulletProjectileEntity {
-        public ShotgunShot(EntityType<? extends BulletProjectileEntity> pType, Level pLevel) {
-            super(pType, pLevel, BulletType.SHELL);
-        }
-    }
+ //   public static class ShotgunShot extends BulletProjectileEntity {
+ //       public ShotgunShot(EntityType<? extends BulletProjectileEntity> pType, Level pLevel) {
+ //           super(pType, pLevel, BulletType.SHELL);
+ //       }
+ //   }
     public static class RevolverShot extends BulletProjectileEntity {
         public RevolverShot(EntityType<? extends BulletProjectileEntity> pType, Level pLevel) {
             super(pType, pLevel, BulletType.CAL_22);

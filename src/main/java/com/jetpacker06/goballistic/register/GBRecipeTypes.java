@@ -1,7 +1,7 @@
 package com.jetpacker06.goballistic.register;
 
 import com.jetpacker06.goballistic.GoBallistic;
-import com.jetpacker06.goballistic.content.kinetics.stamp.StampingRecipe;
+import com.jetpacker06.goballistic.content.recipe.stamping.StampingRecipe;
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;

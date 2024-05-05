@@ -1,7 +1,7 @@
 package com.jetpacker06.goballistic.jei;
 
 import com.jetpacker06.goballistic.content.kinetics.stamp.AnimatedStamp;
-import com.jetpacker06.goballistic.content.kinetics.stamp.StampingRecipe;
+import com.jetpacker06.goballistic.content.recipe.stamping.StampingRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;

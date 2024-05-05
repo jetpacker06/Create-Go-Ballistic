@@ -81,7 +81,13 @@ public abstract class AbstractGunItem extends ProjectileWeaponItem {
         int cartridgesMissing = item.getMaxAmmoStorage() - cartridgesInGun(pGunStack);
         int ammoFound = findAmmo(pPlayer, pGunStack, cartridgesMissing);
         CompoundTag tag = pGunStack.getOrCreateTag();
-        tag.putInt("AmmoCount", item.getMaxAmmoStorage() - cartridgesMissing + ammoFound);
+
+        int newAmmoCount = item.getMaxAmmoStorage() - cartridgesMissing + ammoFound;
+        tag.putInt("AmmoCount", newAmmoCount);
+        if (ammoFound > 0) {
+            AbstractGunItem gunItem = (AbstractGunItem) pGunStack.getItem();
+            pPlayer.getCooldowns().addCooldown(gunItem, gunItem.getCooldownTicks());
+        }
     }
 
     public static int findAmmo(Player pPlayer, ItemStack pGunStack, int cartridgesMissing) {
@@ -106,7 +112,7 @@ public abstract class AbstractGunItem extends ProjectileWeaponItem {
     }
 
     public void onLeftClick(Level pLevel, Player pPlayer, ItemStack pGunStack) {
-        if (cartridgesInGun(pGunStack) > 0) {
+        if (cartridgesInGun(pGunStack) > 0 && !pPlayer.getCooldowns().isOnCooldown(pGunStack.getItem())) {
             fireGun(pLevel, pPlayer, pGunStack);
             pPlayer.getCooldowns().addCooldown(this, this.getCooldownTicks());
         }
@@ -144,7 +150,7 @@ public abstract class AbstractGunItem extends ProjectileWeaponItem {
 
         Vec3 motion = pPlayer.getLookAngle().add(correction)
                 .normalize()
-                .scale(2);
+                .scale(6);
 
         Vec3 sprayBase = VecHelper.rotate(new Vec3(0, 0.1, 0), 360 * pPlayer.getRandom().nextFloat(), Direction.Axis.Z);
         for (int i = 0; i < type.getSpread(); i++) {

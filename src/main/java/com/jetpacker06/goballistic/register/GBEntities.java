@@ -31,13 +31,13 @@ public class GBEntities {
             .lang("Revolver Shot")
             .renderer(() -> BulletProjectileRenderer::new)
             .register();
-    public static final EntityEntry<BulletProjectileEntity.ShotgunShot> SHOTGUN_SHOT = REGISTRATE.entity("shotgun_shot", BulletProjectileEntity.ShotgunShot::new, MobCategory.MISC)
-            .properties(p -> p.setTrackingRange(4)
-                    .setUpdateInterval(20)
-                    .setShouldReceiveVelocityUpdates(true))
-            .lang("Shotgun Pellet")
-            .renderer(() -> BulletProjectileRenderer::new)
-            .register();
+  //  public static final EntityEntry<BulletProjectileEntity.ShotgunShot> SHOTGUN_SHOT = REGISTRATE.entity("shotgun_shot", BulletProjectileEntity.ShotgunShot::new, MobCategory.MISC)
+  //          .properties(p -> p.setTrackingRange(4)
+  //                  .setUpdateInterval(20)
+  //                  .setShouldReceiveVelocityUpdates(true))
+  //          .lang("Shotgun Pellet")
+  //          .renderer(() -> BulletProjectileRenderer::new)
+  //          .register();
 
     public static void load() {}
 }

@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "goballistic:mechanical_stamp",
     "goballistic:lead_block"
   ]
 }

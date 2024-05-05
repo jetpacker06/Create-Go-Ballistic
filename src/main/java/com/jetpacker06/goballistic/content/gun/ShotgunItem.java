@@ -4,7 +4,7 @@ import com.jetpacker06.goballistic.content.bullet.BulletType;
 import com.jetpacker06.goballistic.register.GBSoundEvents;
 import net.minecraft.sounds.SoundEvent;
 import org.jetbrains.annotations.NotNull;
-
+/*
 public class ShotgunItem extends AbstractGunItem {
 
     public ShotgunItem(Properties p_43009_) {
@@ -21,3 +21,4 @@ public class ShotgunItem extends AbstractGunItem {
         return GBSoundEvents.SHOTGUN_SHOT.get();
     }
 }
+*/

@@ -94,7 +94,7 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
         CreateRecipeProvider.GeneratedRecipe
                 gunpowder_fluid = create("gunpowder_draining", b -> b
                 .require(Items.GUNPOWDER)
-                .output(GBFluids.GUNPOWDER.get(), 2));
+                .output(GBFluids.GUNPOWDER.get(), 250));
 
         public Draining(DataGenerator generator) {
             super(generator);
@@ -102,6 +102,20 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
         @Override
         protected IRecipeTypeInfo getRecipeType() {
             return AllRecipeTypes.EMPTYING;
+        }
+    }
+
+    public static class Compacting extends GBCreateRecipeGen {
+        CreateRecipeProvider.GeneratedRecipe gunpowder_from_fluid = create("gunpowder_from_fluid", b -> b
+                .require(GBFluids.GUNPOWDER.get(), 250)
+                .output(Items.GUNPOWDER));
+
+        public Compacting(DataGenerator generator) {
+            super(generator);
+        }
+        @Override
+        protected IRecipeTypeInfo getRecipeType() {
+            return AllRecipeTypes.COMPACTING;
         }
     }
 
@@ -114,11 +128,11 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
                 filled_casing_22 = create("filled_casing_22", b -> b
                         .require(GBFluids.GUNPOWDER.get(), 250)
                         .require(GBItems.CASING_22.get())
-                        .output(GBItems.FILLED_CASING_22.get())),
-                filled_shell_casing = create("filled_shell_casing", b -> b
-                        .require(GBFluids.GUNPOWDER.get(), 350)
-                        .require(GBItems.CASING_SHELL.get())
-                        .output(GBItems.FILLED_CASING_SHELL.get()));
+                        .output(GBItems.FILLED_CASING_22.get()));//,
+         //       filled_shell_casing = create("filled_shell_casing", b -> b
+         //               .require(GBFluids.GUNPOWDER.get(), 350)
+         //               .require(GBItems.CASING_SHELL.get())
+         //               .output(GBItems.FILLED_CASING_SHELL.get()));
 
         public Filling(DataGenerator generator) {
             super(generator);
@@ -138,11 +152,11 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
                 cartridge_22 = create("cartridge_22", b -> b
                         .require(GBItems.FILLED_CASING_22.get())
                         .require(GBItems.BULLET_22.get())
-                        .output(GBItems.CARTRIDGE_22.get())),
-                shell = create("filled_shell_casing", b -> b
-                        .require(GBItems.FILLED_CASING_SHELL.get())
-                        .require(GBItems.SHELL_PELLETS.get())
-                        .output(GBItems.SHELL.get()));
+                        .output(GBItems.CARTRIDGE_22.get()));//,
+           //     shell = create("filled_shell_casing", b -> b
+           //             .require(GBItems.FILLED_CASING_SHELL.get())
+           //             .require(GBItems.SHELL_PELLETS.get())
+           //             .output(GBItems.SHELL.get()));
 
         public Deploying(DataGenerator generator) {
             super(generator);
@@ -154,13 +168,13 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
     }
 
     public static class MechanicalCrafting extends MechanicalCraftingRecipeGen {
-        CreateRecipeProvider.GeneratedRecipe
-                cartridge_44 = create(GBItems.CASING_SHELL::get).returns(2)
-                .recipe(b -> b.key('P', Items.PAPER)
-                        .patternLine("PPP")
-                        .patternLine("P P")
-                        .patternLine("PPP")
-                        .disallowMirrored());
+    //    CreateRecipeProvider.GeneratedRecipe
+    //            cartridge_44 = create(GBItems.CASING_SHELL::get).returns(2)
+    //            .recipe(b -> b.key('P', Items.PAPER)
+    //                    .patternLine("PPP")
+    //                    .patternLine("P P")
+    //                    .patternLine("PPP")
+    //                    .disallowMirrored());
 
         public MechanicalCrafting(DataGenerator generator) {
             super(generator);
@@ -244,10 +258,10 @@ public abstract class GBCreateRecipeGen extends ProcessingRecipeGen {
                         .output(GBItems.BLANK_44.get())),
                 blank_22 = create("blank_22", b -> b
                         .require(GBItems.FILLED_CASING_22.get())
-                        .output(GBItems.BLANK_22.get())),
-                blank_shell = create("blank_shell", b -> b
-                        .require(GBItems.FILLED_CASING_SHELL.get())
-                        .output(GBItems.BLANK_SHELL.get()));
+                        .output(GBItems.BLANK_22.get()));//,
+             //   blank_shell = create("blank_shell", b -> b
+             //           .require(GBItems.FILLED_CASING_SHELL.get())
+             //           .output(GBItems.BLANK_SHELL.get()));
 
         public Pressing(DataGenerator generator) {
             super(generator);

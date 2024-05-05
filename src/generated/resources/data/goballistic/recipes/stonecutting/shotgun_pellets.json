@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "goballistic:lead_ingot"
-  },
-  "result": "goballistic:shell_pellets",
-  "count": 2
-}

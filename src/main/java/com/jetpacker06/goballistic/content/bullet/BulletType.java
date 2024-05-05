@@ -11,7 +11,7 @@ import net.minecraft.world.entity.EntityType;
 public enum BulletType {
     CAL_22(GBItems.CARTRIDGE_22, GBEntities.REVOLVER_SHOT, new Properties().damage(6)),
     CAL_44(GBItems.CARTRIDGE_44, GBEntities.RIFLE_SHOT, new Properties().damage(8)),
-    SHELL(GBItems.SHELL, GBEntities.SHOTGUN_SHOT, new Properties().damage(12).spread(5)),
+  //  SHELL(GBItems.SHELL, GBEntities.SHOTGUN_SHOT, new Properties().damage(12).spread(5)),
     MINIE_BALL(GBItems.MINIE_BALL, GBEntities.FLINTLOCK_SHOT, new Properties().damage(12));
 
 

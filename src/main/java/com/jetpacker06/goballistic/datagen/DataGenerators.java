@@ -26,6 +26,8 @@ public class DataGenerators {
             GENERATORS.add(new GBCreateRecipeGen.Splashing(gen));
             GENERATORS.add(new GBCreateRecipeGen.Mixing(gen));
             GENERATORS.add(new GBCreateRecipeGen.Cutting(gen));
+            GENERATORS.add(new GBCreateRecipeGen.Draining(gen));
+            GENERATORS.add(new GBCreateRecipeGen.Compacting(gen));
             GENERATORS.add(new GBCreateRecipeGen.Filling(gen));
             GENERATORS.add(new GBCreateRecipeGen.Crushing(gen));
             GENERATORS.add(new GBCreateRecipeGen.Pressing(gen));

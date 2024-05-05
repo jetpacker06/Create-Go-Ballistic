@@ -1,5 +1,6 @@
 package com.jetpacker06.goballistic.content.kinetics.stamp;
 
+import com.jetpacker06.goballistic.content.recipe.stamping.StampingRecipe;
 import com.jetpacker06.goballistic.register.GBRecipeTypes;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;

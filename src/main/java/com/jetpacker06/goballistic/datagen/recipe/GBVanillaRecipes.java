@@ -44,6 +44,21 @@ public class GBVanillaRecipes extends RecipeProvider implements IConditionBuilde
                         .of(AllBlocks.BRASS_CASING.get()).build()))
                 .save(c, CRAFTING + "mechanical_stamp");
 
+        ShapedRecipeBuilder.shaped(GBBlocks.LEAD_BLOCK.get(), 1)
+                .define('I', GBItems.LEAD_INGOT.get())
+                .pattern("III")
+                .pattern("III")
+                .pattern("III")
+                .unlockedBy("has_lead_ingot", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(GBItems.LEAD_INGOT.get()).build()))
+                .save(c, CRAFTING + "lead_block");
+
+        ShapelessRecipeBuilder.shapeless(GBItems.LEAD_INGOT.get(), 9)
+                .requires(GBBlocks.LEAD_BLOCK.get())
+                .unlockedBy("has_lead_ingot", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(GBItems.LEAD_INGOT.get()).build()))
+                .save(c, CRAFTING + "lead_ingot_from_block");
+
         // SMELTING
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(AllItems.CRUSHED_LEAD.get()), GBItems.LEAD_INGOT.get(), 1.0f, 200)
                 .unlockedBy("has_crushed_lead", inventoryTrigger(ItemPredicate.Builder.item()
@@ -62,7 +77,7 @@ public class GBVanillaRecipes extends RecipeProvider implements IConditionBuilde
         cut("stamp_22_cal_casing", Items.HEAVY_WEIGHTED_PRESSURE_PLATE, GBItems.STAMP_22_CAL_CASING.get());
         cut("stamp_22_cal_bullet", Items.HEAVY_WEIGHTED_PRESSURE_PLATE, GBItems.STAMP_22_CAL_BULLET.get());
 
-        cut("shotgun_pellets", GBItems.LEAD_INGOT.get(), GBItems.SHELL_PELLETS.get(), 2);
+       // cut("shotgun_pellets", GBItems.LEAD_INGOT.get(), GBItems.SHELL_PELLETS.get(), 2);
     }
 
     @SuppressWarnings("SameParameterValue")

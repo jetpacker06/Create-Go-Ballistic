@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "goballistic:lead_block"
+    }
+  ],
+  "result": {
+    "item": "goballistic:lead_ingot",
+    "count": 9
+  }
+}

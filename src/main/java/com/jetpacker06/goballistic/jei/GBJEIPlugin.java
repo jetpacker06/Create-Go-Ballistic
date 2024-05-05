@@ -1,8 +1,9 @@
 package com.jetpacker06.goballistic.jei;
 
 import com.jetpacker06.goballistic.GoBallistic;
-import com.jetpacker06.goballistic.content.kinetics.stamp.StampingRecipe;
+import com.jetpacker06.goballistic.content.recipe.stamping.StampingRecipe;
 import com.jetpacker06.goballistic.register.GBBlocks;
+import com.jetpacker06.goballistic.register.GBFluids;
 import com.jetpacker06.goballistic.register.GBRecipeTypes;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
@@ -15,9 +16,8 @@ import com.simibubi.create.infrastructure.config.CRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.helpers.IPlatformFluidHelper;
+import mezz.jei.api.registration.*;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
