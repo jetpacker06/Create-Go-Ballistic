@@ -9,7 +9,7 @@
 <p align="center">
 Bringing Guns and Ammo to Create. <br>
 Featuring a new machine: the Mechanical Stamp. <br>
-Planned to first release on 1.18.2, then port and focus on newer versions
+Planned to first release on 1.18.2, then port and focus on newer versions<br>
 <a href="https://www.buymeacoffee.com/jetpacker06">Buy me a coffee<3</a><br>
 Started 7/17/2023.<br>
 </p>
